@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class SimpleCurrencyConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the base currency (e.g., USD): ");
+        String baseCurrency = scanner.nextLine().toUpperCase();
+
+        System.out.print("Enter the target currency (e.g., EUR): ");
+        String targetCurrency = scanner.nextLine().toUpperCase();
+
+        System.out.print("Enter the amount to convert: ");
+        double amount = scanner.nextDouble();
+
+        // For simplicity, using a fixed exchange rate
+        double exchangeRate = getExchangeRate(baseCurrency, targetCurrency);
+
+        if (exchangeRate != -1) {
+            double convertedAmount = amount * exchangeRate;
+            System.out.printf("Converted amount: %.2f %s%n", convertedAmount, targetCurrency);
+        } else {
+            System.out.println("Invalid currency code or exchange rate not available.");
+        }
+
+        scanner.close();
+    }
+
+    private static double getExchangeRate(String baseCurrency, String targetCurrency) {
+     
+        if (baseCurrency.equals("USD") && targetCurrency.equals("EUR")) {
+            return 0.85; 
+        } else if (baseCurrency.equals("EUR") && targetCurrency.equals("USD")) {
+            return 1.18; 
+        } else {
+            return -1; 
+        }
+    }
+}
